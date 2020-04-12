@@ -1,4 +1,5 @@
 {
-  "domain": "studioframe.auth0.com",
-  "clientId": "0xjEOUQ7jPfCodEf8s90th5xIqvQ92Om"
+  "adobeClientId": "e02ed429c6fb46c4b66131a0002711b0",
+  "adobeScope": "openid",
+  "redirectUri": "https://2qzzn.csb.app"
 }
