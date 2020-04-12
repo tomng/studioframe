@@ -25,11 +25,6 @@ body {
   background-color: white;
 }
 
-/* full-sized  container that fills up the page */
-.framed img {
-  object-fit: cover;
-}
-
 /* center vertically and horizontally inside */
 .photoContainer {
   display: flex;
@@ -38,15 +33,20 @@ body {
 
   height: 100%;
   width: 100%;
-}
 
-.ken-burns-image-wrap {
+  /* Ken Burns */
   overflow: hidden;
   position: relative;
 }
 
-.ken-burns-image-wrap img {
-  animation: move 10s ease infinite;
+.photoContainer img {
+  /* Must have height and width set for object-fit to work */
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+
+  /* Ken Burns */
+  animation: move 10s ease-in-out infinite;
   /* Add infinite to loop. */
   position: absolute;
 }
@@ -55,8 +55,16 @@ body {
   0% {
     transform-origin: bottom left;
     transform: scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
   }
   100% {
-    transform: scale(1.08); /* depends on duration of animation */
+    transform: scale(1.03); /* depends on duration of animation */
+    opacity: 0;
   }
 }

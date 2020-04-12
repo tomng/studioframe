@@ -22,9 +22,8 @@ class FramedPhoto extends React.Component {
     return (
       <div>
         <div className="framedPhoto">
-          <div className="photoContainer ken-burns-image-wrap">
+          <div className="photoContainer">
             <img
-              className="framed"
               onClick={() => this.nextPhoto()}
               alt="Framed Photograph"
               src={this.state.imageUrl}
@@ -54,6 +53,13 @@ class FramedPhoto extends React.Component {
     "https://lightroom.adobe.com/v2c/spaces/74292436523e4d7d888c912c21c9969e/assets/cbdc5f8ffd5e9d0cc26e72b2abdd87a6/revisions/1df247f13e504c28bf307602f2e5a98e/renditions/5bcef7f52d7e5deaa8344f857c003f3a",
     "https://lightroom.adobe.com/v2c/spaces/74292436523e4d7d888c912c21c9969e/assets/a18511f845d49c373095ed0c95d2edb9/revisions/3e3da1914753490182cf75d5e5af1219/renditions/993350b4c77577319ff512391b4a3f0b"
   ];
+
+  /*
+  photoUrls = [
+    "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=thomas-verbruggen-5A06OWU6Wuc-unsplash.jpg&w=2400"
+  ];
+  */
+
   currentPhotoIndex = 0;
 
   getNextImageUrl() {
