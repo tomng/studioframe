@@ -8,6 +8,7 @@ import { useAuth0 } from "./react-auth0-spa";
 import { Router, Route, Switch } from "react-router-dom";
 import Profile from "./components/Profile";
 import history from "./utils/history";
+import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
   const { loading } = useAuth0();
@@ -24,7 +25,7 @@ export default function App() {
           <Route path="/" exact>
             <FramedPhoto />
           </Route>
-          <Route path="/profile" component={Profile} />
+          <PrivateRoute path="/profile" component={Profile} />
         </Switch>
         <NavBar />
       </Router>
