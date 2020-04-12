@@ -1,23 +1,40 @@
 import React from "react";
 import "./styles.css";
+
 import axios from "axios";
+import loadImage from "blueimp-load-image";
 
 class FramedPhoto extends React.Component {
   state = {
     imageUrl: "",
-    messageText: "Howdy there!"
+    captionText: "Howdy there!"
   };
 
   corsProxy = "https://cors-anywhere.herokuapp.com/";
+  unsplashAccessKey = "kqwCGKkLfGAPTK3YhSQxwrNKsQ48BZeO0x9Pb3_YprU";
 
   componentDidMount() {
-    /* Using cors-anywhere as proxy */
-    axios.get(this.corsProxy + "http://xkcd.com/info.0.json").then(res => {
-      /*this.setState({ messageText: res.data });*/
-      console.log(res.data);
-    });
+    this.loadNextPhoto();
+  }
 
-    this.setState({ imageUrl: this.photoUrls[0] });
+  loadNextPhoto() {
+    this.loadNextImageFromTestSet();
+    // this.loadNextImageFromUnsplash();
+  }
+
+  loadNextImageFromUnsplash() {
+    /* Using cors-anywhere as proxy */
+    axios
+      .get(
+        this.corsProxy +
+          "https://api.unsplash.com/photos/random?client_id=" +
+          this.unsplashAccessKey
+      )
+      .then(res => {
+        console.log(res.data);
+        this.setState({ imageUrl: res.data.urls.raw });
+        this.setState({ captionText: res.data.description });
+      });
   }
 
   render() {
@@ -32,7 +49,7 @@ class FramedPhoto extends React.Component {
               onAnimationIteration={this.onAnimationIteration}
             />
             <div>
-              <h1>{this.state.messageText}</h1>
+              <h1>{this.state.captionText}</h1>
             </div>
           </div>
         </div>
@@ -41,7 +58,7 @@ class FramedPhoto extends React.Component {
   }
 
   onAnimationIteration = () => {
-    this.nextPhoto();
+    this.loadNextPhoto();
   };
 
   photoUrls = [
@@ -61,6 +78,13 @@ class FramedPhoto extends React.Component {
 
   /*
   photoUrls = [
+    "https://picsum.photos/1920/1080",
+    "https://picsum.photos/1920.webp"
+  ];
+  */
+
+  /*
+  photoUrls = [
     "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=thomas-verbruggen-5A06OWU6Wuc-unsplash.jpg&w=2400"
   ];
   */
@@ -73,8 +97,28 @@ class FramedPhoto extends React.Component {
     return this.photoUrls[this.currentPhotoIndex];
   }
 
-  nextPhoto() {
+  loadNextImageFromTestSet() {
     this.setState({ imageUrl: this.getNextImageUrl() });
+    loadImage(
+      this.state.imageUrl,
+      function(image, data) {
+        if (data !== undefined) {
+          console.log("Data: ", data);
+        }
+        if (data !== undefined && data.exif !== undefined) {
+          console.log("EXIF data: ", data.exif);
+          console.log(data.exif.getAll());
+        }
+
+        if (data !== undefined && data.iptc !== undefined) {
+          console.log("IPTC data: ", data.iptc);
+          console.log(data.iptc.getAll());
+        }
+      },
+      {
+        meta: true
+      }
+    );
   }
 }
 

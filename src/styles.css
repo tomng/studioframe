@@ -66,8 +66,8 @@ body {
 
 .photoContainer div h1 {
   color: white;
-  font-size: 4em;
-  text-shadow: black 0.05em 0.05em 0.75em;
+  font-size: 1.5em;
+  text-shadow: black 0.05em 0.05em 0.8em;
   text-align: left;
   padding-left: 1em;
 }
