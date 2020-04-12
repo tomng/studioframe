@@ -47,10 +47,29 @@ body {
   height: 100%;
   width: 100%;
 
+  z-index: 1;
+
   /* Ken Burns */
   animation: move 10s ease-in-out infinite;
   /* Add infinite to loop. */
   position: absolute;
+}
+
+.photoContainer div {
+  z-index: 2;
+  position: absolute;
+
+  flex: 0 1 auto;
+  align-self: flex-end;
+  width: 100%;
+}
+
+.photoContainer div h1 {
+  color: white;
+  font-size: 4em;
+  text-shadow: black 0.05em 0.05em 0.75em;
+  text-align: left;
+  padding-left: 1em;
 }
 
 @keyframes move {

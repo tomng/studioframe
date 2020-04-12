@@ -29,6 +29,9 @@ class FramedPhoto extends React.Component {
               src={this.state.imageUrl}
               onAnimationIteration={this.onAnimationIteration}
             />
+            <div>
+              <h1>Howdy there!</h1>
+            </div>
           </div>
         </div>
       </div>
