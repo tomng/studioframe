@@ -7,7 +7,7 @@ import loadImage from "blueimp-load-image";
 class FramedPhoto extends React.Component {
   state = {
     imageUrl: "",
-    captionText: "Howdy there!"
+    captionText: ""
   };
 
   corsProxy = "https://cors-anywhere.herokuapp.com/";
@@ -101,9 +101,12 @@ class FramedPhoto extends React.Component {
     this.setState({ imageUrl: this.getNextImageUrl() });
     loadImage(
       this.state.imageUrl,
-      function(image, data) {
+      (image, data) => {
         if (data !== undefined) {
           console.log("Data: ", data);
+          this.setState({
+            captionText: data.originalWidth + " × " + data.originalHeight
+          });
         }
         if (data !== undefined && data.exif !== undefined) {
           console.log("EXIF data: ", data.exif);
