@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles.css";
 
-import axios from "axios";
 import loadImage from "blueimp-load-image";
 
 class FramedPhoto extends React.Component {
@@ -10,7 +9,6 @@ class FramedPhoto extends React.Component {
     captionText: "Adventure."
   };
 
-  corsProxy = "https://cors-anywhere.herokuapp.com/";
   unsplashAccessKey = "kqwCGKkLfGAPTK3YhSQxwrNKsQ48BZeO0x9Pb3_YprU";
 
   componentDidMount() {
@@ -24,16 +22,19 @@ class FramedPhoto extends React.Component {
 
   loadNextImageFromUnsplash() {
     /* Using cors-anywhere as proxy */
-    axios
-      .get(
-        this.corsProxy +
-          "https://api.unsplash.com/photos/random?client_id=" +
-          this.unsplashAccessKey
-      )
-      .then(res => {
-        console.log(res.data);
-        this.setState({ imageUrl: res.data.urls.raw });
-        this.setState({ captionText: res.data.description });
+
+    fetch(
+      "https://api.unsplash.com/photos/random?client_id=" +
+        this.unsplashAccessKey,
+      {}
+    )
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        this.setState({ imageUrl: data.urls.raw });
+        this.setState({ captionText: data.description });
       });
   }
 
