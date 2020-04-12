@@ -46,7 +46,7 @@ body {
 }
 
 .ken-burns-image-wrap img {
-  animation: move 40s ease;
+  animation: move 10s ease infinite;
   /* Add infinite to loop. */
   position: absolute;
 }
@@ -57,6 +57,6 @@ body {
     transform: scale(1);
   }
   100% {
-    transform: scale(1.2); /* 1.2 is good */
+    transform: scale(1.08); /* depends on duration of animation */
   }
 }

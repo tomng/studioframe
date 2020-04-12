@@ -28,12 +28,17 @@ class FramedPhoto extends React.Component {
               onClick={() => this.nextPhoto()}
               alt="Framed Photograph"
               src={this.state.imageUrl}
+              onAnimationIteration={this.onAnimationIteration}
             />
           </div>
         </div>
       </div>
     );
   }
+
+  onAnimationIteration = () => {
+    this.nextPhoto();
+  };
 
   photoUrls = [
     "https://lightroom.adobe.com/v2c/spaces/74292436523e4d7d888c912c21c9969e/assets/822f19e7abfdfce51b3ceaea95f4fa3f/revisions/91a5a5bfe2544aa1af4a09aff2ebda86/renditions/e7a888a01acb3cfddaca25276bc3f9b4",
