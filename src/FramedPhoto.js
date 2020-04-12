@@ -7,7 +7,7 @@ import loadImage from "blueimp-load-image";
 class FramedPhoto extends React.Component {
   state = {
     imageUrl: "",
-    captionText: ""
+    captionText: "Adventure."
   };
 
   corsProxy = "https://cors-anywhere.herokuapp.com/";
@@ -43,7 +43,7 @@ class FramedPhoto extends React.Component {
         <div className="framedPhoto">
           <div className="photoContainer">
             <img
-              onClick={() => this.nextPhoto()}
+              onClick={() => this.loadNextPhoto()}
               alt="Framed Photograph"
               src={this.state.imageUrl}
               onAnimationIteration={this.onAnimationIteration}
@@ -104,9 +104,9 @@ class FramedPhoto extends React.Component {
       (image, data) => {
         if (data !== undefined) {
           console.log("Data: ", data);
-          this.setState({
-            captionText: data.originalWidth + " × " + data.originalHeight
-          });
+          // this.setState({
+          //   captionText: data.originalWidth + " × " + data.originalHeight
+          // });
         }
         if (data !== undefined && data.exif !== undefined) {
           console.log("EXIF data: ", data.exif);

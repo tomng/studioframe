@@ -23,7 +23,7 @@ body {
   width: 100vw;
 
   /* white mat border */
-  padding: 52px;
+  padding: 3vw; /* 52px; */
   background-color: white;
 }
 
@@ -53,6 +53,10 @@ body {
   animation: move 10s ease-in-out infinite;
   /* Add infinite to loop. */
   position: absolute;
+
+  /* Reduce flickering */
+  -webkit-backface-visibility: hidden; /* add to fix webkit bug jitter */
+  -webkit-transform: perspective(1000px); /* add to fix webkit bug jitter */
 }
 
 .photoContainer div {
@@ -66,10 +70,32 @@ body {
 
 .photoContainer div h1 {
   color: white;
-  font-size: 1.5em;
-  text-shadow: black 0.05em 0.05em 0.8em;
+  /* font-size: 1.5em; */
+  font-size: 2.25vw;
+  text-shadow: black 0.05em 0.05em 1.5em;
   text-align: left;
-  padding-left: 1em;
+  padding-left: 3.5vw;
+  padding-bottom: 1vw;
+
+  animation: textFade 10s ease-in-out infinite;
+}
+
+@keyframes textFade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    /* lag a little from photo animation */
+    opacity: 1;
+  }
+  25% {
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes move {
@@ -77,15 +103,23 @@ body {
     transform-origin: bottom left;
     transform: scale(1);
     opacity: 0;
+    filter: saturate(0%);
+    /* filter: blur(50px); */
   }
   10% {
     opacity: 1;
+    /* filter: blur(0px); */
+  }
+  25% {
+    filter: saturate(100%);
   }
   90% {
     opacity: 1;
+    /* filter: blur(0px); */
   }
   100% {
     transform: scale(1.1); /* depends on duration of animation */
     opacity: 0;
+    /* filter: blur(50px); */
   }
 }
