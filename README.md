@@ -1,2 +1,0 @@
-# studioframe
-Created with CodeSandbox
