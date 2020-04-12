@@ -16,23 +16,8 @@ class FramedPhoto extends React.Component {
   }
 
   loadNextPhoto() {
-    // this.loadNextImageFromTestSet();
+    this.loadNextImageFromTestSet();
     // this.loadNextImageFromUnsplash();
-    this.loadNextImageFromGooglePhotos();
-  }
-
-  loadNextImageFromGooglePhotos() {
-    fetch("https://photoslibrary.googleapis.com/v1/albums", {
-      headers: new Headers({
-        Authorization: "blah"
-      })
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        console.log(data);
-      });
   }
 
   loadNextImageFromUnsplash() {
@@ -119,7 +104,7 @@ class FramedPhoto extends React.Component {
       this.state.imageUrl,
       (image, data) => {
         if (data !== undefined) {
-          console.log("Data: ", data);
+          // console.log("Data: ", data);
           // this.setState({
           //   captionText: data.originalWidth + " × " + data.originalHeight
           // });
