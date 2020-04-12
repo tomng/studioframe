@@ -1,12 +1,22 @@
 import React from "react";
 import "./styles.css";
+import axios from "axios";
 
 class FramedPhoto extends React.Component {
   state = {
-    imageUrl: ""
+    imageUrl: "",
+    messageText: "Howdy there!"
   };
 
+  corsProxy = "https://cors-anywhere.herokuapp.com/";
+
   componentDidMount() {
+    /* Using cors-anywhere as proxy */
+    axios.get(this.corsProxy + "http://xkcd.com/info.0.json").then(res => {
+      /*this.setState({ messageText: res.data });*/
+      console.log(res.data);
+    });
+
     this.setState({ imageUrl: this.photoUrls[0] });
   }
 
@@ -22,7 +32,7 @@ class FramedPhoto extends React.Component {
               onAnimationIteration={this.onAnimationIteration}
             />
             <div>
-              <h1>Howdy there!</h1>
+              <h1>{this.state.messageText}</h1>
             </div>
           </div>
         </div>
